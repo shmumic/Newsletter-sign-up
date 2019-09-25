@@ -51,13 +51,14 @@ app.post("/", function(req, res) {
     console.log("processing request");
     if (error) {
       console.log(error);
-
+      res.sendFile(__dirname + "/failure.html")
     } else {
       if(response.statusCode != 200)
       {
         console.log(response.statusCode + "\n");
         console.log("request failed, request data: \n" +Jsondata);
         console.log("response: \n" + response.body);
+        res.sendFile(__dirname + "/failure.html")
 
 
       }
@@ -66,6 +67,7 @@ app.post("/", function(req, res) {
         console.log(response.statusCode + "\n");
         console.log("member added sucessfuly, request data: \n" +Jsondata);
         console.log("response: \n" + response.body);
+        res.sendFile(__dirname + "/sucess.html")
 
 
       }
