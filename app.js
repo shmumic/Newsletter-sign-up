@@ -5,7 +5,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 const fs = require('fs');
-
+var app = express();
 // var app = express(); //creates an instance of the node express server
 app.use(express.static("public")) //refres links to static files such as images and css to a folder named "public"
 app.use(bodyParser.urlencoded({extended: true})); //easliy parse input
@@ -45,7 +45,7 @@ app.post("/", function(req, res) {
     url: "https://us20.api.mailchimp.com/3.0/lists/5e18cd7c67",
     method: "POST",
     headers: {
-      Authorization: "Mickey e308ffc60af95171981bdbb88eb07676-us20", //this api-key was revoked, don't waste your time ;)
+      Authorization: "Mickey bbbf-us20", //this api-key was revoked, don't waste your time ;)
 
     },
     body: Jsondata
@@ -61,16 +61,14 @@ app.post("/", function(req, res) {
         console.log(response.statusCode + "\n");
         console.log("request failed, request data: \n" +Jsondata);
         console.log("response: \n" + response.body);
-        res.sendFile(__dirname + "/failure.html")
-
+        res.sendFile(__dirname + "/failure.html");
 
       }
       if(response.statusCode == 200)
       {
         console.log(response.statusCode + "\n");
         console.log("member added sucessfuly, request data: \n" +Jsondata);
-        res.sendFile(__dirname + "/success.html")
-
+        res.sendFile(__dirname + "/sucess.html");
         //var page_template = fs.readFileSync(__dirname + '/signup.html','utf-8');
         //console.log(page_template)
         //var dom = new JSDOM(page_template);
