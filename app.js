@@ -1,7 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
-var app = express(); //creates an instance of the node express server
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+const fs = require('fs');
+
+// var app = express(); //creates an instance of the node express server
 app.use(express.static("public")) //refres links to static files such as images and css to a folder named "public"
 app.use(bodyParser.urlencoded({
   extended: true
@@ -42,7 +47,7 @@ app.post("/", function(req, res) {
     url: "https://us20.api.mailchimp.com/3.0/lists/5e18cd7c67",
     method: "POST",
     headers: {
-      Authorization: "Mickey 84c86c5b5cac4614b8ca0fcb5c52e3f8-us20",
+      Authorization: "Mickey 84c86c5b5cac4614b8ca0fcb5c52e3f8-us20", //this api-key was revoked, don't waste your time ;) 
 
     },
     body: Jsondata
@@ -66,10 +71,17 @@ app.post("/", function(req, res) {
       {
         console.log(response.statusCode + "\n");
         console.log("member added sucessfuly, request data: \n" +Jsondata);
-        console.log("response: \n" + response.body);
-        res.sendFile(__dirname + "/sucess.html")
+        res.sendFile(__dirname + "/success.html")
 
+        //var page_template = fs.readFileSync(__dirname + '/signup.html','utf-8');
+        //console.log(page_template)
+        //var dom = new JSDOM(page_template);
 
+        //
+        // dom.window.document.querySelector("#myModal").style = "block";
+        // console.log("changed dom object sucessfuly!!");
+        // console.log(dom.window.document);
+        // res.send(dom.window.document);
       }
     }
 
