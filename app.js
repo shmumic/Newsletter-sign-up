@@ -8,9 +8,7 @@ const fs = require('fs');
 
 // var app = express(); //creates an instance of the node express server
 app.use(express.static("public")) //refres links to static files such as images and css to a folder named "public"
-app.use(bodyParser.urlencoded({
-  extended: true
-})); //easliy parse input
+app.use(bodyParser.urlencoded({extended: true})); //easliy parse input
 app.listen(process.env.PORT || 3000 , function() { //starts server on the a process defined port or 3000
   console.log("server is running on port 3000");
 
@@ -47,7 +45,7 @@ app.post("/", function(req, res) {
     url: "https://us20.api.mailchimp.com/3.0/lists/5e18cd7c67",
     method: "POST",
     headers: {
-      Authorization: "Mickey 84c86c5b5cac4614b8ca0fcb5c52e3f8-us20", //this api-key was revoked, don't waste your time ;) 
+      Authorization: "Mickey e308ffc60af95171981bdbb88eb07676-us20", //this api-key was revoked, don't waste your time ;)
 
     },
     body: Jsondata
