@@ -1,0 +1,5 @@
+removed: jsdom and fs modules
+added:
+ejs
+confirmation pop-up window instead of redirecting to an external page.
+some simple mocking logic for testing a successful response.

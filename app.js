@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+var mock = 0; //used for testing
 
-const fs = require('fs');
 var app = express();
+app.set('view engine', 'ejs');
+var registered = 0;
 // var app = express(); //creates an instance of the node express server
 app.use(express.static("public")) //refres links to static files such as images and css to a folder named "public"
 app.use(bodyParser.urlencoded({extended: true})); //easliy parse input
@@ -15,7 +15,11 @@ app.listen(process.env.PORT || 3000 , function() { //starts server on the a proc
 })
 
 app.get("/", function(req, res) { //returns a page when server recive a get-request with no specific page/
-  res.sendFile(__dirname + "/signup.html");
+  //res.sendFile(__dirname + "/signup.html");
+  console.log("page was requested, registeration status:" + registered);
+
+  res.render("signup",{wasRegistered:registered})
+  registered = 0;
 });
 app.post("/", function(req, res) {
   console.log("recived a sgin-up request:");
@@ -42,14 +46,15 @@ app.post("/", function(req, res) {
   };
   var Jsondata = JSON.stringify(data);
   var options = {
-    url: "https://us20.api.mailchimp.com/3.0/lists/5e18cd7c67",
+    url: "https://mailchimp_dc.com/3.0/lists/your_list_id",
     method: "POST",
     headers: {
-      Authorization: "Mickey bbbf-us20", //this api-key was revoked, don't waste your time ;)
+      Authorization: "Mickey mailchimp_api_key", //this api-key was revoked, don't waste your time ;)
 
     },
     body: Jsondata
   };
+  if (mock == 0) {
   request(options, function(error, response, body) {
     console.log("processing request");
     if (error) {
@@ -68,20 +73,20 @@ app.post("/", function(req, res) {
       {
         console.log(response.statusCode + "\n");
         console.log("member added sucessfuly, request data: \n" +Jsondata);
-        res.sendFile(__dirname + "/sucess.html");
-        //var page_template = fs.readFileSync(__dirname + '/signup.html','utf-8');
-        //console.log(page_template)
-        //var dom = new JSDOM(page_template);
-
-        //
-        // dom.window.document.querySelector("#myModal").style = "block";
-        // console.log("changed dom object sucessfuly!!");
-        // console.log(dom.window.document);
-        // res.send(dom.window.document);
+        registered = 1;
+        res.redirect("/");
       }
     }
 
   });
+}
+else{
+  console.log("mocking a sucessful request")
+  registered = 1;
+  res.redirect("/");
+
+
+}
 })
 //api key
 //

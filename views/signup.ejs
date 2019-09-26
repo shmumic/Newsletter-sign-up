@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Gr8ful - Newletter Sign-up</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <script>
+function chnageDisplay(displaySetting) { //changes the dispaly of the confirmation pop-up window.
+  document.getElementById("myModal").style.display = displaySetting;
+}
+</script>
+    <form action = "/" class="form-signin" method = "post">
+      <img class="mb-4" src="imgs\logo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Sign up here</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="text" name="firstName" class="form-control" placeholder="First name" required autofocus>
+      <input type="text" name="lastName" class="form-control" placeholder="Last name" required autofocus>
+      <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <br>
+       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign me up!</button>
+       <br />
+      <p class="mt-5 mb-3 text-muted">&copy; Gr8Full</p>
+    </form>
+    <% if(wasRegistered == 0){ %>
+    <div id="myModal" class="modal fade" style="display: none;">
+      <% } %>
+      <% if(wasRegistered == 1){ %>
+      <div id="myModal" class="modal fade in" style="display: block;"  >
+        <% } %>
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+          <i class="material-icons"></i>
+ 				</div>
+				<h4 class="modal-title">Awesome!</h4>
+			</div>
+			<div class="modal-body">
+				<p class="text-center">You have successfully registered<br />
+Smile and stay tuned <br />😊
+</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal" onclick="chnageDisplay('none')">OK</button> </div>
+		</div>
+
+	</div>
+</div>
+  </body>
+</html>
